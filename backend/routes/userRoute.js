@@ -6,6 +6,7 @@ import {
   userlogin,
 } from '../controllers/user.js'
 import { authMiddleware } from '../middleware/authorization.js'
+import { isAdmin } from '../middleware/admin.js'
 
 const router = express.Router()
 
@@ -13,8 +14,8 @@ router.post('/register', registerUser)
 
 router.post('/login', userlogin)
 
-router.get('/:id', getUser)
+router.get('/:id', authMiddleware, isAdmin, getUser) // add a admin middleware
 
-router.put('/:id', updateUser) // add a auth middleware
+router.put('/:id', authMiddleware, updateUser) // add a auth middleware
 
 export default router

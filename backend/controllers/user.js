@@ -8,7 +8,7 @@ configDotenv()
 
 export const registerUser = async (req, res) => {
   try {
-    const { username, email, password, role = 'user' } = req.body
+    const { username, email, password, role } = req.body
     if (!username || !email || !password) {
       return res
         .status(404)
@@ -57,7 +57,7 @@ export const userlogin = async (req, res) => {
     if (!ispassword) {
       return res.status(404).json({ message: 'Invalid password' })
     }
-    generateCookie(res, user._id)
+    generateCookie(res, user._id, user.role)
     res.status(200).json({
       success: true,
       message: 'Login Successfull',
