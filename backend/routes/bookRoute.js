@@ -7,6 +7,6 @@ router.get('/', getBook)
 
 router.get('/:id', getBookbyId)
 
-router.post('/', addBook)
+router.post('/', addBook) // admin middleware
 
 export default router

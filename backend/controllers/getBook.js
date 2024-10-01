@@ -8,12 +8,11 @@ export const getBook = async (req, res) => {
 
     const skip = (page - 1) * limit
 
-    // Fetch books with pagination
     const books = await Book.find()
-      .sort({ createdAt: -1 }) // Sort by creation date, newest first
+      .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit)
-      .lean() // Use lean() for better performance
+      .lean()
 
     // Get total count of books
     const total = await Book.countDocuments()
